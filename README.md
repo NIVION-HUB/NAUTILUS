@@ -52,46 +52,47 @@ It parses multi-format bank statements, flags suspicious mule account behavior, 
 
 ```mermaid
 flowchart TB
-    subgraph Input["📥 Data Input Layer"]
-        A1[Bank Statements<br/>PDF / Excel / CSV]
-        A2[Digital Indicators<br/>Domains / IPs / Phone / UPI]
-        A3[Victim Complaint<br/>FIR / Initial UTR / Loss Amount]
+    subgraph Input["Data Input Layer"]
+        A1["Bank Statements<br/>PDF / Excel / CSV"]
+        A2["Digital Indicators<br/>Domains / IPs / Phone / UPI"]
+        A3["Victim Complaint<br/>FIR / Initial UTR / Loss Amount"]
     end
 
-    subgraph Normalization["⚙️ Normalization & Enrichment"]
-        B1[Layout-Free Statement Parser<br/>UTS v1 Schema]
-        B2[Narration Dissector<br/>UPI VPA / RRN / ATM Terminal]
-        B3[Hybrid Digital Ingestor<br/>Passive OSINT + Offline Cache]
-        B4[Temporal Normalizer<br/>Clock Skew Calibration]
+    subgraph Normalization["Normalization & Enrichment"]
+        B1["Layout-Free Statement Parser<br/>UTS v1 Schema"]
+        B2["Narration Dissector<br/>UPI VPA / RRN / ATM Terminal"]
+        B3["Hybrid Digital Ingestor<br/>Passive OSINT + Offline Cache"]
+        B4["Temporal Normalizer<br/>Clock Skew Calibration"]
     end
 
-    subgraph Engines["🧠 Proprietary Correlation Engines"]
-        C1[Transaction Topology Engine<br/>8 Primitives + 64-bit Risk DNA]
-        C2[Infrastructure DNA Engine<br/>6 Signal Types + 128-bit Fingerprint]
-        C3[Mule Role Classifier<br/>Collector / Layerer / Funnel / Cashout]
+    subgraph Engines["Proprietary Correlation Engines"]
+        C1["Transaction Topology Engine<br/>8 Primitives + 64-bit Risk DNA"]
+        C2["Infrastructure DNA Engine<br/>6 Signal Types + 128-bit Fingerprint"]
+        C3["Mule Role Classifier<br/>Collector / Layerer / Funnel / Cashout"]
     end
 
-    subgraph Graph["🕸️ Correlation Core"]
-        D1[Unified Heterogeneous Entity Graph<br/>UHEG: Financial Rails ⟷ Cyber Infrastructure]
+    subgraph Graph["Correlation Core"]
+        D1["Unified Heterogeneous Entity Graph<br/>UHEG: Financial Rails to Cyber Infra"]
     end
 
-    subgraph Decision["⚡ Decision Support & Triage"]
-        E1[Freeze Priority Matrix<br/>Golden Hour Asset Recovery Triage]
-        E2[Dual-Badge Evidence Classifier<br/>Court-Admissible vs Indicative Lead]
+    subgraph Decision["Decision Support & Triage"]
+        E1["Freeze Priority Matrix<br/>Golden Hour Asset Recovery Triage"]
+        E2["Dual-Badge Evidence Classifier<br/>Court-Admissible vs Indicative Lead"]
     end
 
-    subgraph Output["📤 Investigator Deliverables"]
-        F1[Interactive Money-Trail Graph]
-        F2[Bipartite Infrastructure Canvas]
-        F3[Automated Sec 91 & 102 CrPC Notices]
-        F4[Court-Ready Case Dossier PDF/Excel]
+    subgraph Output["Investigator Deliverables"]
+        F1["Interactive Money-Trail Graph"]
+        F2["Bipartite Infrastructure Canvas"]
+        F3["Automated Sec 91 & 102 CrPC Notices"]
+        F4["Court-Ready Case Dossier PDF/Excel"]
     end
 
-    subgraph Trust["🔐 Evidentiary Integrity"]
-        G1[SHA-256 Hash Chain + Section 65B IEA / 63 BSA Audit Log]
+    subgraph Trust["Evidentiary Integrity"]
+        G1["SHA-256 Hash Chain + Section 65B IEA / 63 BSA Audit Log"]
     end
 
-    A1 --> B1 --> B2
+    A1 --> B1
+    B1 --> B2
     A2 --> B3
     A3 --> B4
     B2 --> C1
@@ -117,13 +118,13 @@ flowchart TB
 
 ```mermaid
 flowchart LR
-    S1([1. Case Intake<br/>FIR, Victim UTR & Files]) --> S2[2. Auto-Standardization<br/>UTS v1 + Narration Parsing]
-    S2 --> S3[3. Digital OSINT<br/>DNS, WHOIS, CT Logs, ASN]
-    S3 --> S4[4. Topology & DNA Engine<br/>8 Primitives + Mule Roles]
-    S4 --> S5[5. Unified Entity Graph<br/>Money Trail ⟷ Cyber Links]
-    S5 --> S6{6. Decision Triage<br/>Freeze Priority & Leads}
-    S6 --> S7[7. Auto-Draft Notices<br/>Sec 91/102 CrPC & Report]
-    S7 --> S8([8. Actionable Enforcement<br/>Authorized Officer Acts])
+    S1(["1. Case Intake<br/>FIR, Victim UTR and Files"]) --> S2["2. Auto-Standardization<br/>UTS v1 + Narration Parsing"]
+    S2 --> S3["3. Digital OSINT<br/>DNS, WHOIS, CT Logs, ASN"]
+    S3 --> S4["4. Topology & DNA Engine<br/>8 Primitives + Mule Roles"]
+    S4 --> S5["5. Unified Entity Graph<br/>Money Trail to Cyber Links"]
+    S5 --> S6{"6. Decision Triage<br/>Freeze Priority and Leads"}
+    S6 --> S7["7. Auto-Draft Notices<br/>Sec 91/102 CrPC and Report"]
+    S7 --> S8(["8. Actionable Enforcement<br/>Authorized Officer Acts"])
 ```
 
 ---
