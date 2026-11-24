@@ -1,225 +1,271 @@
-# NAUTILUS: Financial Crime Infrastructure & Money-Trail Analysis System
+# 🧭 NAUTILUS
+
+**N**etwork **A**nalysis for **U**nified **T**racing of **I**llicit **L**edgers & **U**nderlying **S**ystems
+
+> *Just like the submarine Nautilus explored the hidden depths of the ocean, NAUTILUS dives beneath the surface of a fraud case to reveal the hidden network connecting money and digital infrastructure.*
 
 [![Track](https://img.shields.io/badge/Track-PS05%20Financial%20Crime%20Analytics-0A2540?style=for-the-badge)](https://github.com)
+[![Hackathon](https://img.shields.io/badge/Hackathon-Rajasthan%20Police%202026-E65100?style=for-the-badge)](https://github.com)
 [![Architecture](https://img.shields.io/badge/Architecture-Local--First%20%7C%20Zero--External--API-1E88E5?style=for-the-badge)](https://github.com)
 [![Legal Framework](https://img.shields.io/badge/Compliance-Sec%2091%20%26%20102%20CrPC%20%7C%20BNSS-43A047?style=for-the-badge)](https://github.com)
 [![Python](https://img.shields.io/badge/Python-3.10%2B-blue?style=for-the-badge&logo=python&logoColor=white)](https://python.org)
 
-> **Networked Analysis & Unified Transaction Intelligence Linking Unified Systems (NAUTILUS)**  
-> An integrated forensic investigation platform that ingests multi-format bank statements, traces suspected mule-account transactions hop-by-hop from a victim UTR, correlates digital cyber infrastructure (domains, IPs, SSL certificates, passive DNS), and auto-generates court-ready Section 91 & Section 102 CrPC statutory notices and evidence dossiers.
+**Problem Statement:** PS05 — Financial Crime Analytics & Digital Infrastructure Intelligence  
+**Hackathon:** Rajasthan Police Cyber Security Hackathon 2026  
 
 ---
 
-![NAUTILUS Architecture](NAUTILUS_Architecture_Flowchart.png)
+## 📖 Overview
+
+Online financial fraud rarely stops at one transfer — money hops across multiple accounts in minutes, while scammers rely on disposable domains, IP addresses, phone numbers, and UPI handles to run and conceal the operation. 
+
+Today, investigating officers (IOs) examine banking statements and cyber footprints separately. This manual, siloed process wastes critical hours during the **"Golden Hour"** of fund recovery, conceals syndicate connections across different FIRs, and leads to defective statutory information requests that get rejected by telecom and hosting providers.
+
+**NAUTILUS brings both trails — the money trail and the digital trail — into one unified investigation workspace.**
+
+It parses multi-format bank statements, flags suspicious mule account behavior, identifies domain/IP infrastructure overlaps, synchronizes every event on a calibrated timeline, and auto-drafts case reports and lawful information requests — so investigators spend time deciding and taking action, not manually cross-referencing spreadsheets.
+
+> ⚠️ **Investigative Safeguard:** NAUTILUS assists investigators with explainable decision support. It does not freeze accounts autonomously, determine legal guilt, or access private subscriber data without lawful process.
 
 ---
 
-## 📌 Executive Summary & Problem Context
+## ✨ Key Capabilities & Features
 
-Modern cyber-enabled financial fraud in India (e.g., loan app scams, task-based investment fraud, fake job portals, and APK malware) exploits two distinct planes simultaneously:
-1. **Layered Financial Rails:** Stolen money is rapidly channeled through networks of rented or compromised "mule" bank accounts, split into fractions, layered across banks, and liquidated at ATMs within minutes.
-2. **Disposable Digital Infrastructure:** Fraudsters deploy disposable domains, fast-flux DNS configurations, bulletproof VPS hosting, and anonymized VPNs/proxies to deceive victims and hide communication channels.
-
-### The Operational Challenge for Law Enforcement
-Investigating Officers (IOs) in cyber crime police stations receive bank statements in non-standard PDF/Excel formats and digital indicators from various sources. Analyzing them independently creates blind spots, slows down asset freezing during the critical **"Golden Hour"**, and leads to defective statutory information requests that get rejected by telecom and hosting providers.
-
-**NAUTILUS eliminates this silo.** It unifies heterogeneous banking files and digital footprints into a **Unified Heterogeneous Entity Graph (UHEG)**, enabling automated fund tracing, explainable mule profiling, cross-case syndicate attribution, and legally sound evidence export.
-
----
-
-## 🎯 Key System Innovations & Force-Multipliers
-
-### 1. Indian Payment Narration Deconstruction Engine
-Bank statements in India contain cluttered, non-standard narration strings. NAUTILUS applies deterministic pattern matching to dissect raw narrations into structured forensic parameters:
-* **Payment Modalities:** Auto-classifies `UPI/P2P`, `UPI/P2M`, `IMPS-P2A`, `NEFT`, `RTGS`, and `ATM-WDL`.
-* **Third-Party Providers:** Identifies handles (`@paytm`, `@ybl`, `@okhdfcbank`, `@ibl`, PhonePe, Google Pay, Cred, BharatPe).
-* **12-Digit RRN / UTR Retrieval:** Extracts transaction reference numbers directly from dense strings.
-* **ATM Terminal Dissection:** Parses physical cash-out terminals and locations (e.g., `ATM-WDL/S1AC001/JAIPUR-MALVIYA NAGAR`).
-
-### 2. Transaction Topology Engine (TTE) & 8 Risk Primitives
-Instead of treating accounts in isolation, the TTE mathematically analyzes graph-theoretic fund flow patterns across **8 explainable risk primitives**:
-1. **Velocity Spike:** Rapid in-and-out fund transit within a 24-hour window (inflow followed by immediate outflow).
-2. **Layering Depth:** Directed hop count from victim UTR to downstream terminal accounts.
-3. **Counterparty Entropy:** Shannon entropy of sender accounts (detects collection funnels for multiple victims).
-4. **Fan-In Funneling:** Ratio of credits from unrelated senders to bulk debit transfers or ATM cashouts (> 10:1).
-5. **Repeated Counterparty Nexus:** Identifies hidden convergence points across seemingly unconnected cases.
-6. **Round-Figure Clustering:** Chi-squared goodness-of-fit test detecting abnormal concentration at ₹10k, ₹50k, ₹1L milestones.
-7. **Dormancy Break:** Sudden activation (> 10x prior volume within 48h) after > 90 days of inactivity.
-8. **Structuring Signature:** Disproportionate credits placed just below statutory thresholds (e.g., ₹49,999 to evade ₹50,000 PAN rules).
-
-### 3. Explainable Mule Role Taxonomy
-Replaces ambiguous risk percentages with legally explainable operational roles:
-* `[COLLECTOR MULE]` (Tier 1): Directly receives victim funds; exhibits near-zero balance retention and immediate dispersal.
-* `[LAYERING MULE]` (Tier 2): Splits round-figure amounts across multiple downstream accounts to break the audit trail.
-* `[AGGREGATOR / FUNNEL MULE]` (Tier 2/3): Collects small credits from multiple accounts into a consolidated balance.
-* `[TERMINAL CASHOUT NODE]` (Tier 3/4): Physical exit point (ATM cash withdrawal, merchant POS swipe, P2P settlement).
-
-### 4. "Golden Hour" Debit Freeze Triage Matrix
-Asset recovery requires rapid action. NAUTILUS evaluates **Retained Balance**, **Transit Velocity**, and **Hop Distance** to rank accounts by immediate recovery probability:
-* `[PRIORITY 1 - URGENT FREEZE]`: Holds ₹4,20,000 balance, zero outbound debits in last 3 hours — 92% recovery probability.
-* `[PRIORITY 2 - ACTIVE MONITOR]`: Layering active; ₹1,10,000 in transit across 2 hops.
-* `[PRIORITY 4 - EXHAUSTED]`: Balance ₹150; ₹2,00,000 liquidated via ATM cash withdrawal.
-
-### 5. Hybrid Domain & IP Intelligence (Zero Active Probing)
-* **Mode A (Live Passive OSINT):** Queries authoritative RDAP/WHOIS, resolves DNS records (A, AAAA, MX, NS, TXT, CNAME), queries Certificate Transparency (CT) logs (`crt.sh`) for subdomains, and enriches IPs with ASN, ISP, and VPN/Proxy flags.
-* **Mode B (Air-Gapped Reference):** Ingests offline GeoLite2, ASN delegation tables, and pre-packaged evidence files with automated 2.5s timeout fallback.
-* **Strict Constraint:** Zero active port scanning or server probing (no Nmap, no exploit fuzzing).
-
-### 6. Dynamic IP & Carrier-Grade NAT (CGNAT) Alignment
-Mobile fraudsters share public IPv4 addresses across thousands of cellular subscribers. NAUTILUS enforces exact **UTC Timestamp + Public IP + Source Port** mapping, ensuring statutory notices issued to telecom operators (Airtel, Jio, Vi) uniquely identify the specific subscriber session.
-
-### 7. Dual-Badge Evidentiary Classification
-* 🟢 **`[PRIMARY EVIDENCE / COURT ADMISSIBLE]`**: Core Banking CBS UTR rows, certified account statements with SHA-256 integrity hashes, and CT log Merkle proofs (meets Section 65B Indian Evidence Act / Section 63 BSA criteria).
-* 🟡 **`[INVESTIGATIVE LEAD / INDICATIVE]`**: IP Geolocation, Hosting Provider ASN, Reverse DNS (PTR), and WHOIS Privacy records. (Clearly flagged: *Requires Section 91 CrPC notice to establish physical suspect identity*).
+| Feature | What It Does & Technical Innovation |
+|---|---|
+| 📥 **Bank Statement Parser** | Universal layout-free ingestion for PDF, Excel, and CSV statements into the Unified Transaction Schema (`UTS v1`). |
+| 🔍 **Payment Narration Dissector** | Deterministic regex engine that extracts UTRs, 12-digit RRNs, UPI handles (`@paytm`, `@ybl`), remitter names, and ATM terminal locations from raw text. |
+| 🚩 **Transaction Topology Engine** | Evaluates **8 explainable risk primitives** (Velocity Spike, Layering Depth, Counterparty Entropy, Fan-In Funnel, Dormancy Break, Structuring) to detect mule chains. |
+| 🏷️ **Mule Role Taxonomy** | Classifies flagged accounts into operational roles: `[COLLECTOR]`, `[LAYERING]`, `[AGGREGATOR/FUNNEL]`, or `[TERMINAL CASHOUT]`. |
+| ⚡ **Freeze Priority Matrix** | **"Golden Hour" Triage:** Ranks accounts by immediate fund recovery probability based on retained balance, velocity, and distance from the victim. |
+| 🌐 **Domain & IP Intelligence** | Passive WHOIS/RDAP, DNS records (A, AAAA, MX, NS, TXT, CNAME), Certificate Transparency (CT) subdomains, ASN, reverse DNS, and VPN/Proxy flags. |
+| 📶 **CGNAT Source Port Alignment** | Resolves dynamic cellular IP ambiguity by matching exact **UTC Timestamp + Public IP + Source Port** for telecom queries. |
+| ⏱️ **Temporal Correlation Engine** | Calibrates clock skew using ground-truth UTR anchors and normalizes IST, UTC, and server logs onto a unified timeline with uncertainty bands. |
+| 🕸️ **Unified Entity Graph (UHEG)** | Visual interactive map connecting: `Victim FIR` ➔ `UTR` ➔ `Mule Accounts` ➔ `UPI / Phone` ⟷ `Phishing Domain` ➔ `Server IP / ASN`. |
+| ⚖️ **Dual-Badge Evidence Classification** | Distinguishes 🟢 **Primary Evidence / Court Admissible** (CBS UTR, certified statement row hashes) from 🟡 **Investigative Lead / Indicative Only** (IP Geolocation, Reverse DNS). |
+| 📄 **Statutory Notice & Report Pack** | Generates pre-filled **Section 91 & 102 CrPC (BNSS Sec 94 & 106)** notices tailored for Banks, Registrars, Cloud Hosts, and Telecom ISPs, plus a full Case Dossier. |
+| 🔐 **Evidence Integrity Vault** | Unbroken SHA-256 cryptographic hash chaining for every row and artifact, compliant with Section 65B Indian Evidence Act / Section 63 BSA. |
 
 ---
 
-## 🏗️ System Architecture & Workflow
+## 🏗️ System Architecture
+
+```mermaid
+flowchart TB
+    subgraph Input["📥 Data Input Layer"]
+        A1[Bank Statements<br/>PDF / Excel / CSV]
+        A2[Digital Indicators<br/>Domains / IPs / Phone / UPI]
+        A3[Victim Complaint<br/>FIR / Initial UTR / Loss Amount]
+    end
+
+    subgraph Normalization["⚙️ Normalization & Enrichment"]
+        B1[Layout-Free Statement Parser<br/>UTS v1 Schema]
+        B2[Narration Dissector<br/>UPI VPA / RRN / ATM Terminal]
+        B3[Hybrid Digital Ingestor<br/>Passive OSINT + Offline Cache]
+        B4[Temporal Normalizer<br/>Clock Skew Calibration]
+    end
+
+    subgraph Engines["🧠 Proprietary Correlation Engines"]
+        C1[Transaction Topology Engine<br/>8 Primitives + 64-bit Risk DNA]
+        C2[Infrastructure DNA Engine<br/>6 Signal Types + 128-bit Fingerprint]
+        C3[Mule Role Classifier<br/>Collector / Layerer / Funnel / Cashout]
+    end
+
+    subgraph Graph["🕸️ Correlation Core"]
+        D1[Unified Heterogeneous Entity Graph<br/>UHEG: Financial Rails ⟷ Cyber Infrastructure]
+    end
+
+    subgraph Decision["⚡ Decision Support & Triage"]
+        E1[Freeze Priority Matrix<br/>Golden Hour Asset Recovery Triage]
+        E2[Dual-Badge Evidence Classifier<br/>Court-Admissible vs Indicative Lead]
+    end
+
+    subgraph Output["📤 Investigator Deliverables"]
+        F1[Interactive Money-Trail Graph]
+        F2[Bipartite Infrastructure Canvas]
+        F3[Automated Sec 91 & 102 CrPC Notices]
+        F4[Court-Ready Case Dossier PDF/Excel]
+    end
+
+    subgraph Trust["🔐 Evidentiary Integrity"]
+        G1[SHA-256 Hash Chain + Section 65B IEA / 63 BSA Audit Log]
+    end
+
+    A1 --> B1 --> B2
+    A2 --> B3
+    A3 --> B4
+    B2 --> C1
+    B3 --> C2
+    C1 --> C3
+    C1 --> D1
+    C2 --> D1
+    B4 --> D1
+    D1 --> E1
+    D1 --> E2
+    E1 --> F1
+    E2 --> F2
+    D1 --> F3
+    D1 --> F4
+    B1 -.-> G1
+    B3 -.-> G1
+    D1 -.-> G1
+```
+
+---
+
+## 🔄 End-to-End Investigation Workflow
+
+```mermaid
+flowchart LR
+    S1([1. Case Intake<br/>FIR, Victim UTR & Files]) --> S2[2. Auto-Standardization<br/>UTS v1 + Narration Parsing]
+    S2 --> S3[3. Digital OSINT<br/>DNS, WHOIS, CT Logs, ASN]
+    S3 --> S4[4. Topology & DNA Engine<br/>8 Primitives + Mule Roles]
+    S4 --> S5[5. Unified Entity Graph<br/>Money Trail ⟷ Cyber Links]
+    S5 --> S6{6. Decision Triage<br/>Freeze Priority & Leads}
+    S6 --> S7[7. Auto-Draft Notices<br/>Sec 91/102 CrPC & Report]
+    S7 --> S8([8. Actionable Enforcement<br/>Authorized Officer Acts])
+```
+
+---
+
+## 🧬 Explainable Mule Taxonomy & Risk Primitives
+
+Rather than assigning opaque "threat percentages," NAUTILUS evaluates transaction behavior across **8 composable risk primitives** and classifies accounts into functional roles:
 
 ```
-┌───────────────────────────────────────────────────────────────────────────────────────────┐
-│                                 PRESENTATION LAYER                                        │
-│  ┌────────────────────────┐  ┌────────────────────────┐  ┌─────────────────────────────┐  │
-│  │ Interactive Money-Trail│  │ Bipartite Infrastructure│ │ Multi-Modal Entity Explorer │  │
-│  │ Graph (Seeded by UTR)  │  │ Map (Domains ↔ IPs)    │  │ & Unified Case Timeline     │  │
-│  └────────────────────────┘  └────────────────────────┘  └─────────────────────────────┘  │
-│  ┌────────────────────────┐  ┌────────────────────────┐  ┌─────────────────────────────┐  │
-│  │ Freeze Priority Matrix │  │ Multi-Party Notice Pack│  │ Court-Ready Case Dossier    │  │
-│  │ (Golden Hour Triage)   │  │ (Sec 91/102 CrPC/BNSS) │  │ (PDF/Excel + SHA-256 Chain) │  │
-│  └────────────────────────┘  └────────────────────────┘  └─────────────────────────────┘  │
-├───────────────────────────────────────────────────────────────────────────────────────────┤
-│                             CORRELATION ENGINE (THE "BRAIN")                              │
-│  ┌────────────────────────┐  ┌────────────────────────┐  ┌─────────────────────────────┐  │
-│  │ Transaction Topology   │  │ Infrastructure DNA     │  │ Temporal Correlation Engine │  │
-│  │ Engine (8 Primitives)  │  │ Engine (12 Signals)    │  │ (Clock Skew + CGNAT Align)  │  │
-│  └────────────────────────┘  └────────────────────────┘  └─────────────────────────────┘  │
-│  ┌─────────────────────────────────────────────────────────────────────────────────────┐  │
-│  │                  UNIFIED HETEROGENEOUS ENTITY GRAPH (UHEG)                          │  │
-│  │    Victim UTR ↔ Mule Accounts ↔ UPI IDs ↔ Phone Numbers ↔ Domains ↔ IPs ↔ ASNs      │  │
-│  └─────────────────────────────────────────────────────────────────────────────────────┘  │
-├───────────────────────────────────────────────────────────────────────────────────────────┤
-│                                 NORMALIZATION LAYER                                       │
-│  ┌────────────────────────┐  ┌────────────────────────┐  ┌─────────────────────────────┐  │
-│  │ Bank Statement Parser  │  │ Hybrid Domain/IP Engine│  │ Case Evidence Vault &       │  │
-│  │ (Layout-Free PDF/Excel)│  │ (Passive OSINT/Offline)│  │ Hash-Chained Audit Trail    │  │
-│  └────────────────────────┘  └────────────────────────┘  └─────────────────────────────┘  │
-└───────────────────────────────────────────────────────────────────────────────────────────┘
+┌────────────────────────────────────────────────────────────────────────────────────────┐
+│                              8 EXPLAINABLE RISK PRIMITIVES                             │
+├─────────────────────────┬──────────────────────────────────────────────────────────────┤
+│ Primitive               │ Algorithmic Logic & Evidentiary Significance                 │
+├─────────────────────────┼──────────────────────────────────────────────────────────────┤
+│ 1. VELOCITY_SPIKE       │ In-degree + out-degree within 24h exceeds μ + 3σ (zero rest).│
+│ 2. LAYERING_DEPTH       │ Directed path distance from victim UTR to terminal cash-out. │
+│ 3. COUNTERPARTY_ENTROPY │ High Shannon entropy: collection funnel for multiple victims.│
+│ 4. FAN_IN_FUNNEL        │ Many small credits (unrelated senders) ➔ single bulk debit.  │
+│ 5. REPEATED_NEXUS       │ Multiple suspected accounts routing to same beneficiary/ATM. │
+│ 6. ROUND_FIGURE_CLUSTER │ Statistically anomalous concentration at ₹10k, ₹50k, ₹1L.   │
+│ 7. DORMANCY_BREAK       │ Inactive > 90 days suddenly processing > 10x prior volume.   │
+│ 8. STRUCTURING_SIGN     │ Repetitive transfers placed just below reporting thresholds. │
+└─────────────────────────┴──────────────────────────────────────────────────────────────┘
 ```
+
+### The 4 Operational Mule Roles
+1. **`[COLLECTOR MULE]` (Tier 1 Gateway):** Receives victim funds directly, displays high velocity (`VELOCITY_SPIKE`), retains near-zero balance, and disperses 95%+ of funds within minutes.
+2. **`[LAYERING MULE]` (Tier 2 Smurfer):** Splits round-figure amounts across multiple downstream accounts (`LAYERING_DEPTH` + `ROUND_FIGURE_CLUSTER`) to deliberately break the audit trail.
+3. **`[AGGREGATOR / FUNNEL MULE]` (Tier 2/3 Nexus):** Funnels fragmented small credits from 10+ distinct sender accounts into a unified bulk balance (`FAN_IN_FUNNEL` + `COUNTERPARTY_ENTROPY`).
+4. **`[TERMINAL CASHOUT NODE]` (Tier 3/4 Exit):** Interacts directly with physical cash extraction points (ATM cash withdrawals, cardless withdrawals, merchant POS debits).
 
 ---
 
 ## ⚡ Scalability & Real-Time Production Upgrade Blueprint
 
-A common misconception is that massive datasets require real-time streaming architectures. In law enforcement forensics, **high-performance batch processing is mathematically optimal**:
-* **Seeded $k$-Hop Graph Traversal:** Avoids computing useless all-to-all graphs across millions of rows. NAUTILUS performs directed traversal starting strictly from the victim's UTR, touching only the relevant mule sub-graph in sub-second time ($O(k)$ complexity).
-* **64-bit Risk DNA In-Memory Compression:** The behavioral fingerprints of **1,000,000 bank accounts occupy only 8 MB of RAM**, enabling instant cross-case similarity checks in CPU registers.
+In cyber forensics, high-performance batch processing is mathematically optimal for multi-gigabyte statements:
+* **Seeded $k$-Hop Graph Traversal:** Instead of building an all-to-all graph of 5 million transactions, NAUTILUS executes a directed traversal strictly outward from the victim's UTR, isolating the relevant sub-graph in sub-second time ($O(k)$ complexity).
+* **64-bit Risk DNA In-Memory Compression:** Distills multi-variable account behavior into an 8-byte integer. The Risk DNA profiles of **1,000,000 bank accounts take just 8 MB of RAM**, allowing instantaneous cross-case similarity checks in CPU cache.
 
-### Decoupled Adapter Architecture (Upgrade Bridge)
-The core analytical engines consume standardized `UnifiedTransaction` objects without depending on file formats:
-* **Today (Forensic MVP):** Ingests PDF/Excel/CSV statements via the Bank Statement Parser (BSP).
-* **Tomorrow (Live Production):** Connects to a **Kafka Event Consumer** or **CBS Webhook** pushing live transaction messages into the exact same pipeline with **zero refactoring of the correlation engines**.
+```
+┌─────────────────────────────────────────────────────────────────────────────────────────┐
+│                                 THE UPGRADE BRIDGE                                      │
+├─────────────────────────────────────────┬───────────────────────────────────────────────┤
+│ STAGE 1: HACKATHON MVP (TODAY)          │ STAGE 2: ENTERPRISE PRODUCTION (TOMORROW)     │
+├─────────────────────────────────────────┼───────────────────────────────────────────────┤
+│ • Input: Uploaded PDF/Excel statements  │ • Input: Apache Kafka / CBS Webhook / ISO8583 │
+│ • Mode: Post-incident forensic inquiry  │ • Mode: Live interdiction & streaming triage  │
+│ • Target: District Cyber Crime Unit     │ • Target: State Cyber Command / 1930 Helpline │
+│ • Ingestor: Bank Statement Parser (BSP) │ • Ingestor: Streaming Event Consumer          │
+│                                         │                                               │
+│ ──▶ THE CORE REMAINS 100% UNCHANGED:                                                    │
+│     The TTE, IDE, TCorE, and Risk DNA engines consume standardized `UnifiedTransaction` │
+│     records regardless of whether they arrive via file upload or live streaming sockets.│
+└─────────────────────────────────────────┴───────────────────────────────────────────────┘
+```
 
 ---
 
-## ⚖️ Legal Framework & Statutory Notice Automation
+## ⚖️ Legal Framework & Operational Boundaries
 
-NAUTILUS produces legally compliant, pre-filled notices ready for signature by the Investigating Officer:
+To ensure court admissibility under Indian criminal jurisprudence:
 
-| Recipient Entity | Statutory Section | Technical Parameters Required | Purpose |
-| :--- | :--- | :--- | :--- |
-| **Beneficiary Banks** | Sec 91 & 102 CrPC (Sec 94 & 106 BNSS) | Account No, IFSC, Victim UTR, Defrauded Amount, Timestamp | Account Opening KYC, mandate form, IPDR login logs, and **Immediate Debit Freeze** |
-| **Domain Registrars** | Sec 91 CrPC (Sec 94 BNSS) | Domain Name, Creation Date, WHOIS Registrant ID | Subscriber identity, payment gateway transaction IDs, and registration IP |
-| **Cloud / VPS Providers** | Sec 91 CrPC (Sec 94 BNSS) | Server IP, Subnet, Timestamp Window | Virtual server access logs, SSH login IPs, and billing account profiles |
-| **Telecom ISPs** | Sec 91 CrPC (Sec 94 BNSS) | Public IP, **Source Port**, UTC Timestamp with Offset | Carrier-Grade NAT (CGNAT) subscriber mapping to Customer Acquisition Form (CAF) |
+* 🚫 **Does NOT access real bank systems** or execute unauthorized account freezes (actions must be authorized by an officer u/s 102 CrPC).
+* 🚫 **Does NOT scan, probe, or intrude** on third-party servers (strictly passive OSINT and offline databases).
+* 🚫 **Does NOT harvest subscriber/KYC data** without statutory process (subscriber identities are obtained via Section 91 CrPC).
+* ✅ **Dual-Badge Reliability Tagging:**
+  * 🟢 **`[PRIMARY EVIDENCE]`**: Bank CBS transaction logs, certified statements with SHA-256 hashes, and Certificate Transparency Merkle proofs (meets Section 65B Indian Evidence Act / Section 63 BSA criteria).
+  * 🟡 **`[INVESTIGATIVE LEAD]`**: IP Geolocation, Hosting Provider ASN, Reverse DNS (PTR), and WHOIS Privacy records.
+* ⚖️ **Mandatory Legal Disclaimer:**
+  > *`LEGAL NOTICE: Geolocation, ASN, and hosting provider attribution represent network routing infrastructure and datacenter facilities. They are indicative investigative leads and do NOT constitute legal proof of a physical suspect's identity or physical location.`*
 
-### Mandatory Legal Disclaimer
-> *`LEGAL NOTICE: Geolocation, ASN, and hosting provider attribution represent network routing infrastructure and datacenter facilities. They are indicative investigative leads and do NOT constitute legal proof of a physical suspect's identity or physical location.`*
+---
+
+## 🛠️ Tech Stack
+
+| Layer | Component | Technology |
+|---|---|---|
+| **Core Architecture** | Backend & Processing | Python 3.10+, FastAPI |
+| **Statement Ingestion** | Layout-Free Extraction | `pdfplumber`, `openpyxl`, `pandas`, regex |
+| **Digital Intelligence** | Passive OSINT & Lookups | `dnspython`, `python-whois`, `ipwhois`, `crt.sh` API |
+| **Graph & Topology** | Network Analysis | `NetworkX`, Cytoscape.js |
+| **Storage & Caching** | High-Throughput DB | SQLite (Forensic Workstation) / PostgreSQL / DuckDB |
+| **Document Generation** | Court-Ready Notices & Reports | `python-docx`, Jinja2, ReportLab |
+| **UI Presentation** | War Room Workspace | Streamlit / React + Tailwind CSS |
 
 ---
 
 ## 📋 Standardized Final Investigation Report Template
 
-The platform automatically generates a comprehensive forensic report structured into standard evidentiary sections:
-* **Part I:** Incident Reference & FIR Case Intake
-* **Part II:** Victim Loss & Primary Defrauded UTR
-* **Part III:** Chronological Money-Trail & Layered Hop Ledger
-* **Part IV:** Digital Infrastructure & Cyber Footprint Dossier
-* **Part V:** Cross-Case Syndicate Linkage Matrix
-* **Part VI:** Statutory Notices Dispatched (Annexures A to D)
-* **Part VII:** Mandatory Forensic Certification under Section 65B Indian Evidence Act (Section 63 BSA)
+The platform automatically compiles an exportable, court-ready forensic report structured as:
+* **Part I:** Incident Reference & FIR Case Intake (PS, Crime No, 1930 Ack No, IO Name).
+* **Part II:** Victim Loss & Primary Defrauded Transaction (Amount, Account, Initial UTR).
+* **Part III:** Money-Trail & Layered Fund Routing Ledger (Hop-by-hop sequence with timestamps, amounts, and mule roles).
+* **Part IV:** Digital Infrastructure & Cyber Footprint Dossier (Domains, DNS, CT subdomains, IPs, ASNs, VPN flags).
+* **Part V:** Correlation Matrix & Cross-Case Syndicate Links (Shared NS, shared UPI VPAs, Risk DNA similarity).
+* **Part VI:** Statutory Notices Dispatched (Annexures A to D for Banks, Registrars, Cloud Hosts, Telcos).
+* **Part VII:** Mandatory Forensic Certificate under Section 65B Indian Evidence Act / Section 63 BSA.
 
 ---
 
-## 🚀 Quickstart & Installation
+## 🚀 Hackathon Scope & Demo Deliverables
 
-### Prerequisites
-* Python 3.10 or higher
-* Recommended: Virtual environment
+### Must-Have (Core MVP Demonstrated)
+- [x] Ingest sample bank statements (PDF and Excel) from multiple accounts into `UTS v1`.
+- [x] Trace money trail from a sample victim UTR through planted mule chains.
+- [x] Flag suspicious accounts across 8 risk primitives with plain-language explanations.
+- [x] Passive domain and IP lookup for sample indicators with offline fallback.
+- [x] Unified interactive case timeline.
+- [x] Generate a combined case dossier and sample Section 91/102 CrPC notices.
 
-### Installation
+### Good-to-Have (Included in Architecture)
+- [x] Cross-case linking of common accounts and digital infrastructure using DNA fingerprints.
+- [x] Auto-drafted multi-party information requests with Carrier-Grade NAT (CGNAT) Source Port mapping.
+- [x] Historical passive DNS tracking and Certificate Transparency subdomain discovery.
+
+---
+
+## 💻 Quickstart & Setup
+
 ```bash
-# Clone the repository
-git clone https://github.com/your-username/nautilus-forensics.git
+# 1. Clone repository
+git clone https://github.com/NIVION-HUB/nautilus-forensics.git
 cd nautilus-forensics
 
-# Create virtual environment
+# 2. Set up virtual environment
 python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
+# On Windows:
+.\venv\Scripts\activate
+# On Linux/macOS:
+source venv/bin/activate
 
-# Install core dependencies
+# 3. Install dependencies
 pip install -r requirements.txt
-```
 
-### Core Dependencies
-```txt
-pdfplumber>=0.10.0      # Layout-free PDF statement extraction
-openpyxl>=3.1.0         # Excel statement parsing
-pandas>=2.0.0           # Tabular data manipulation
-dnspython>=2.4.0        # Passive DNS record resolution
-python-docx>=1.1.0      # Word dossier report generation
-```
-
-### Basic Usage Example
-```python
-from nautilus.core.parsers.bsp import PDFStatementParser
-from nautilus.core.engines.tte import TransactionTopologyEngine
-from pathlib import Path
-
-# 1. Parse bank statements
-parser = PDFStatementParser()
-statement = parser.parse(Path("data/sample/mule_account_statement.pdf"), account_id="ACC_98765", bank_name="State Bank of India")
-
-# 2. Run Topology Engine
-engine = TransactionTopologyEngine({"ACC_98765": statement})
-risk_dna = engine.compute_risk_dna("ACC_98765")
-
-print(f"Risk Tier: {risk_dna.risk_tier_label}")
-print(f"Triggered Primitives: {[p.name for p in risk_dna.triggered_primitives]}")
-
-# 3. Trace Money Trail from Victim UTR
-money_trail = engine.trace_money_trail(victim_utr="SBIN000123456789")
-print(f"Total Hops: {len(money_trail.hops)} | Layering Depth: {money_trail.layering_depth}")
+# 4. Run sample analysis
+python -m nautilus.core.parsers.bsp
 ```
 
 ---
 
-## 🏆 Hackathon PS05 Scope Compliance Matrix
+## 📜 License & Acknowledgments
 
-| PS05 Evaluation Parameter | Status | Implementation Detail |
-| :--- | :---: | :--- |
-| **Bank-Statement Ingestion** | ✅ Must Have | Universal layout-free parser for PDF, Excel, and CSV into `UTS v1` schema. |
-| **Mule-Account Analysis** | ✅ Must Have | 8 explainable risk primitives, 64-bit Risk DNA, and 4-tier mule role taxonomy. |
-| **Money-Trail Visualization** | ✅ Must Have | Directed interactive fund graph seeded from victim UTR with smart tier collapsing. |
-| **Domain & IP Lookups** | ✅ Must Have | Passive WHOIS/RDAP, DNS, CT log subdomains, and IP ASN attribution with offline fallback. |
-| **Cross-Case Linking** | 🌟 Good to Have | 64-bit Risk DNA and 128-bit Infra DNA similarity matching across independent FIRs. |
-| **Lawful Notice Generator** | 🌟 Good to Have | Pre-drafted Section 91 & Section 102 CrPC notices with exact CGNAT Source Ports. |
-| **Historical Records** | 🌟 Good to Have | Historical passive DNS tracking and Regional Internet Registry (RIR) allocation monitoring. |
-| **Out-of-Scope Discipline** | 🔒 Compliant | Zero active network probing, zero unauthorized access to bank switches or private records. |
+This project was developed for the **Rajasthan Police Cyber Security Hackathon 2026** under Problem Statement **PS05 (Financial Crime Analytics & Digital Infrastructure Intelligence)**.
 
----
-
-## 📄 License & Classification
-
-* **Document Version:** 2.0  
-* **Classification:** FOR OFFICIAL USE ONLY / HACKATHON EVALUATION  
-* **Track:** Rajasthan Police Hackathon / PS05 Financial Crime Analytics
+*For Official Law Enforcement Evaluation Only.*
